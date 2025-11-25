@@ -1,3 +1,9 @@
-[gd_scene format=3 uid="uid://cw14exdhnsne2"]
+[gd_scene load_steps=2 format=3 uid="uid://cw14exdhnsne2"]
+
+[ext_resource type="Texture2D" uid="uid://oleyyd0gxvly" path="res://counter godot map 1.png" id="1_ig7tw"]
 
 [node name="main" type="Node2D"]
+
+[node name="CounterGodotMap1" type="Sprite2D" parent="."]
+position = Vector2(778, 361)
+texture = ExtResource("1_ig7tw")
