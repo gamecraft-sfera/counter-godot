@@ -5,5 +5,6 @@
 [node name="main" type="Node2D"]
 
 [node name="CounterGodotMap1" type="Sprite2D" parent="."]
-position = Vector2(778, 361)
+position = Vector2(401.5, 361)
+scale = Vector2(1.0157259, 1)
 texture = ExtResource("1_ig7tw")

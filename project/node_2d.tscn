@@ -1,0 +1,43 @@
+[gd_scene load_steps=5 format=3 uid="uid://nc3vvndjnxdn"]
+
+[ext_resource type="Script" uid="uid://nj0fbhsxvfm8" path="res://node_2d.gd" id="1_epypp"]
+[ext_resource type="Texture2D" uid="uid://oleyyd0gxvly" path="res://counter godot map 1.png" id="1_wtcfe"]
+[ext_resource type="Texture2D" uid="uid://r5ucb5h0qu5t" path="res://pngimg.com - gift_PNG100228.png" id="2_0e48y"]
+[ext_resource type="Texture2D" uid="uid://biu8a0o1ca2vx" path="res://icon.svg" id="4_0hol4"]
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_epypp")
+metadata/_edit_horizontal_guides_ = [-1699.0]
+
+[node name="CounterGodotMap1" type="Sprite2D" parent="."]
+position = Vector2(32, 158.00002)
+scale = Vector2(1.0358871, 1.0198491)
+texture = ExtResource("1_wtcfe")
+
+[node name="TextureButton" type="TextureButton" parent="."]
+anchors_preset = -1
+anchor_left = -0.23900001
+anchor_top = 0.13100001
+anchor_bottom = 0.13100001
+offset_left = 480.0
+offset_top = 126.0
+offset_right = 825.59766
+offset_bottom = 491.74045
+texture_normal = ExtResource("2_0e48y")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="."]
+offset_left = 564.0
+offset_top = 355.0
+offset_right = 819.0
+offset_bottom = 475.0
+theme_override_font_sizes/font_size = 64
+text = "OKAK"
+
+[node name="Icon" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(-2, 418)
+texture = ExtResource("4_0hol4")
+
+[connection signal="pressed" from="TextureButton" to="." method="_on_texture_button_pressed"]
