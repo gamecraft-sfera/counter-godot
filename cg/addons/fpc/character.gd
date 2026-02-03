@@ -166,7 +166,15 @@ func _process(_delta):
 
 	update_debug_menu_per_frame()
 
-
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("shoot"):
+		shoot()
+func shoot():
+	if %RayCast3D.is_colliding():
+		var collider : Node3D = %RayCast3D.get_collider()
+		if collider:
+			collider.queue_free()
+	
 func _physics_process(delta): # Most things happen here.
 	# Gravity
 	if dynamic_gravity:
