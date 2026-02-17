@@ -29,6 +29,9 @@ environment = SubResource("Environment_fcvq4")
 
 [node name="Character" parent="." instance=ExtResource("1_fxoqj")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -62.00054, 0.35505295, 6.17749)
+base_speed = 5.0
+sprint_speed = 0.0
+crouch_speed = 2.0
 
 [node name="CSGBox3D" type="CSGBox3D" parent="."]
 transform = Transform3D(1.7973897, 0, 0, 0, 1, 0, 0, 0, 1.9737326, -17.289764, -0.38812065, 0.17725801)
@@ -85,10 +88,10 @@ use_collision = true
 size = Vector3(7.1109657, 3.9121704, 1)
 
 [node name="CSGBox3D10" type="CSGBox3D" parent="."]
-transform = Transform3D(0.01822038, 0, -0.99983394, 0, 1, 0, 0.99983394, 0, 0.01822038, -34.363304, 1.6946411, 10.647458)
+transform = Transform3D(0.01822038, 0, -0.99983394, 0, 1, 0, 0.99983394, 0, 0.01822038, -34.398655, 1.6946411, 8.70752)
 material_override = ExtResource("3_csntm")
 use_collision = true
-size = Vector3(12.8190365, 3.8658447, 1.0554528)
+size = Vector3(16.699558, 3.8658447, 1.0554528)
 
 [node name="CSGBox3D11" type="CSGBox3D" parent="."]
 transform = Transform3D(-0.9999998, 0, -0.0005935112, 0, 1, 0, 0.0005935112, 0, -0.9999998, -42.38197, 1.6946411, -21.727243)
