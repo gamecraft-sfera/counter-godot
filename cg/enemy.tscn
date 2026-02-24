@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://dr64o488lshxs"]
+
+[ext_resource type="Script" uid="uid://dbtidwy17m05p" path="res://enemy.gd" id="1_4gyqm"]
+[ext_resource type="PackedScene" uid="uid://c5areyrbjen7j" path="res://Meshy_AI_Character_in_Tactical_0224160337_texture.glb" id="1_7k104"]
+
+[node name="Enemy" type="CharacterBody3D"]
+script = ExtResource("1_4gyqm")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+
+[node name="Meshy_AI_Character_in_Tactical_0224160337_texture" parent="." instance=ExtResource("1_7k104")]
+transform = Transform3D(1.5531874, 0, 0, 0, 1.5531874, 0, 0, 0, 1.5531874, 0.07823372, -2.3710432, 0.90014267)
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
