@@ -218,7 +218,7 @@ tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "handle_modes": PackedInt32Array(0, 1, 0, 1, 0),
-"points": PackedFloat32Array(0.04, -0.25, 0, 0.25, 0, 0, 0, 0, 0, 0, -0.04, -0.25, 0, 0.25, 0, 0, 0, 0, 0, 0, 0.04, -0.25, 0, 0.25, 0),
+"points": PackedFloat32Array(0.02, -0.25, 0, 0.25, 0, 0, 0, 0, 0, 0, -0.02, -0.25, 0, 0.25, 0, 0, 0, 0, 0, 0, 0.02, -0.25, 0, 0.25, 0),
 "times": PackedFloat32Array(0, 0.5, 1, 1.5, 2)
 }
 tracks/1/type = "bezier"
@@ -229,7 +229,7 @@ tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "handle_modes": PackedInt32Array(0, 0, 0, 0, 0),
-"points": PackedFloat32Array(-0.05, -0.25, 0, 0.2, 0.005, 0, -0.2, 0.000186046, 0.2, 0.000186046, -0.05, -0.2, 0.005, 0.2, 0.005, 0, -0.2, 0, 0.2, 0, -0.05, -0.2, 0.005, 0.25, 0),
+"points": PackedFloat32Array(-0.02, -0.25, 0, 0.2, 0.005, 0, -0.2, 0.000186046, 0.2, 0.000186046, -0.02, -0.2, 0.005, 0.2, 0.005, 0, -0.2, 0, 0.2, 0, -0.02, -0.2, 0.005, 0.25, 0),
 "times": PackedFloat32Array(0, 0.5, 1, 1.5, 2)
 }
 
@@ -296,7 +296,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.5, 1.5),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector3(0, 0, 0), Vector3(-0.0349066, 0, 0), Vector3(0, 0, 0)]
+"values": [Vector3(0, 0, 0), Vector3(-0.017453292, 0, 0), Vector3(0, 0, 0)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -308,7 +308,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.5, 1.5),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector3(0, 0, 0), Vector3(0, -0.1, 0), Vector3(0, 0, 0)]
+"values": [Vector3(0, 0, 0), Vector3(0, -0.02, 0), Vector3(0, 0, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_l1rph"]
@@ -474,10 +474,13 @@ speed_scale = 4.0
 unique_name_in_owner = true
 target_position = Vector3(0, 0, -20)
 
-[node name="Meshy_AI__0310164825_texture" parent="Head" instance=ExtResource("4_bx7cj")]
-transform = Transform3D(-1.1215857, 0, 0.046862274, 0, 1.5611817, 0, -0.052617885, 0, -0.9989011, 0.6534247, -0.35903525, -1.0166334)
+[node name="Weapon" type="Node3D" parent="Head"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.29472232, -0.8882927, -1.2882725e-08)
 
-[node name="Mesh" parent="Head/Meshy_AI__0310164825_texture" index="0"]
+[node name="Meshy_AI__0310164825_texture" parent="Head/Weapon" instance=ExtResource("4_bx7cj")]
+transform = Transform3D(-1.1215857, 0, 0.046862274, 0, 1.5611817, 0, -0.052617885, 0, -0.9989011, 0.35870236, 0.5292574, -1.0166334)
+
+[node name="Mesh" parent="Head/Weapon/Meshy_AI__0310164825_texture" index="0"]
 mesh = SubResource("ArrayMesh_go8lt")
 
 [node name="UserInterface" type="Control" parent="."]
@@ -513,4 +516,4 @@ target_position = Vector3(0, 0.5, 0)
 [node name="EditorModule" type="Node" parent="."]
 script = ExtResource("3_v3ckk")
 
-[editable path="Head/Meshy_AI__0310164825_texture"]
+[editable path="Head/Weapon/Meshy_AI__0310164825_texture"]
