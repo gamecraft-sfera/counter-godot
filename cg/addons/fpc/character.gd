@@ -11,17 +11,17 @@ extends CharacterBody3D
 ## The settings for the character's movement and feel.
 @export_category("Character")
 ## The speed that the character moves at without crouching or sprinting.
-@export var base_speed : float = 3.0
+@export var base_speed : float = 6.0
 ## The speed that the character moves at when sprinting.
 @export var sprint_speed : float = 6.0
 ## The speed that the character moves at when crouching.
 @export var crouch_speed : float = 1.0
-@export var air_control : float = 0.15
-@export var max_speed : float = 12.0
+@export var air_control : float = 2.5
+@export var max_speed : float = 9.0
 ## How fast the character speeds up and slows down when Motion Smoothing is on.
 @export var acceleration : float = 10.0
 ## How high the player jumps.
-@export var jump_velocity : float = 4.5
+@export var jump_velocity : float = 5 
 ## How far the player turns when the mouse is moved.
 @export var mouse_sensitivity : float = 0.1
 ## Invert the X axis input for the camera.
@@ -32,7 +32,8 @@ extends CharacterBody3D
 @export var immobile : bool = false
 ## The reticle file to import at runtime. By default are in res://addons/fpc/reticles/. Set to an empty string to remove.
 @export_file var default_reticle
-
+@export var ground_accel : float = 10.0
+@export var air_accel : float = 2.5
 #endregion
 
 #region Nodes Export Group
@@ -235,23 +236,41 @@ func handle_movement(delta, input_dir):
 	var direction = input_dir.rotated(-HEAD.rotation.y)
 	direction = Vector3(direction.x, 0, direction.y)
 
-	# GROUND
 	if is_on_floor():
-		if motion_smoothing:
-			velocity.x = lerp(velocity.x, direction.x * speed, acceleration * delta)
-			velocity.z = lerp(velocity.z, direction.z * speed, acceleration * delta)
-		else:
-			velocity.x = direction.x * speed
-			velocity.z = direction.z * speed
-
-	# AIR (bhop + momentum)
+		# ground movement
+		velocity.x = lerp(velocity.x, direction.x * speed, acceleration * delta)
+		velocity.z = lerp(velocity.z, direction.z * speed, acceleration * delta)
 	else:
+		# air movement (bhop)
 		if in_air_momentum:
-			velocity.x += direction.x * speed * 0.1
-			velocity.z += direction.z * speed * 0.1
+			var wish_dir = direction.normalized()
+			wish_dir.y = 0
+			wish_dir = wish_dir.normalized()
+			
+			var wish_speed = direction.length() * speed
+			wish_speed = min(wish_speed, max_speed)
+			
+			if abs(input_dir.y) > 0:
+				wish_speed *= 0.3
+			
+			var current_speed = velocity.dot(wish_dir)
+			var add_speed = wish_speed - current_speed
+			
+			if add_speed > 0:
+				var accel_speed = air_control * wish_speed * delta
+				accel_speed = min(accel_speed, add_speed)
+				
+				velocity.x += accel_speed * wish_dir.x
+				velocity.z += accel_speed * wish_dir.z
+			var horizontal_speed = Vector2(velocity.x, velocity.z).length()
 
+			if horizontal_speed > max_speed:
+				var limited = Vector2(velocity.x, velocity.z).normalized() * max_speed
+				velocity.x = limited.x
+				velocity.z = limited.y
+
+	# 👇 TOHLE JE MUST
 	move_and_slide()
-
 
 func handle_head_rotation():
 	if invert_camera_x_axis:
