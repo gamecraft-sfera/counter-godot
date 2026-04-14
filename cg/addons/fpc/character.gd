@@ -16,7 +16,8 @@ extends CharacterBody3D
 @export var sprint_speed : float = 6.0
 ## The speed that the character moves at when crouching.
 @export var crouch_speed : float = 1.0
-
+@export var air_control : float = 0.15
+@export var max_speed : float = 12.0
 ## How fast the character speeds up and slows down when Motion Smoothing is on.
 @export var acceleration : float = 10.0
 ## How high the player jumps.
@@ -225,29 +226,31 @@ func handle_jumping():
 			if Input.is_action_just_pressed(controls.JUMP) and is_on_floor() and !low_ceiling:
 				if jump_animation:
 					JUMP_ANIMATION.play("jump", 0.25)
-				velocity.y += jump_velocity
+				velocity.y = jump_velocity
+				if is_on_floor():
+					velocity.y = max(velocity.y, 0)
 
 
 func handle_movement(delta, input_dir):
 	var direction = input_dir.rotated(-HEAD.rotation.y)
 	direction = Vector3(direction.x, 0, direction.y)
-	move_and_slide()
 
-	if in_air_momentum:
-		if is_on_floor():
-			if motion_smoothing:
-				velocity.x = lerp(velocity.x, direction.x * speed, acceleration * delta)
-				velocity.z = lerp(velocity.z, direction.z * speed, acceleration * delta)
-			else:
-				velocity.x = direction.x * speed
-				velocity.z = direction.z * speed
-	else:
+	# GROUND
+	if is_on_floor():
 		if motion_smoothing:
 			velocity.x = lerp(velocity.x, direction.x * speed, acceleration * delta)
 			velocity.z = lerp(velocity.z, direction.z * speed, acceleration * delta)
 		else:
 			velocity.x = direction.x * speed
 			velocity.z = direction.z * speed
+
+	# AIR (bhop + momentum)
+	else:
+		if in_air_momentum:
+			velocity.x += direction.x * speed * 0.1
+			velocity.z += direction.z * speed * 0.1
+
+	move_and_slide()
 
 
 func handle_head_rotation():
