@@ -5,6 +5,8 @@
 
 extends CharacterBody3D
 
+@export var weapons: Array[PackedScene]
+var actual_weapon_index: int = 0
 
 #region Character Export Group
 
@@ -171,6 +173,22 @@ func _process(_delta):
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("shoot"):
 		shoot()
+	
+	if event.is_action_pressed("deagel"):
+		set_deagel()
+		
+func set_deagel():
+	if actual_weapon_index == 2:
+		return
+		
+	for node in %Weapon.get_children():
+		node.queue_free()
+		
+	actual_weapon_index = 2
+	var deagel = weapons[actual_weapon_index].instantiate()
+	%Deagel.add_child(deagel)
+	
+		
 func shoot():
 	if %RayCast3D.is_colliding():
 		var collider : Node3D = %RayCast3D.get_collider()

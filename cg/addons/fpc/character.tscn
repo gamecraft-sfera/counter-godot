@@ -1,7 +1,8 @@
-[gd_scene load_steps=29 format=4 uid="uid://cc1m2a1obsyn4"]
+[gd_scene load_steps=30 format=4 uid="uid://cc1m2a1obsyn4"]
 
 [ext_resource type="Script" uid="uid://hutuis63hgev" path="res://addons/fpc/character.gd" id="1_0t4e8"]
 [ext_resource type="Texture2D" uid="uid://bvov4myj3fin2" path="res://weapons/Meshy_AI__0310164825_texture_0.jpg" id="3_4fv23"]
+[ext_resource type="PackedScene" uid="uid://cpwn80suvej64" path="res://weapons/Meshy_AI__0310164930_texture.glb" id="3_q62an"]
 [ext_resource type="Script" uid="uid://dgfl3skp075ft" path="res://addons/fpc/EditorModule.gd" id="3_v3ckk"]
 [ext_resource type="Script" uid="uid://u5u7xxlvmcxx" path="res://addons/fpc/debug.gd" id="3_x1wcc"]
 [ext_resource type="PackedScene" uid="uid://ceglub4oqa2jo" path="res://weapons/Meshy_AI__0310164825_texture.glb" id="4_bx7cj"]
@@ -432,6 +433,7 @@ MarginContainer/constants/margin_top = 10
 [node name="Character" type="CharacterBody3D" node_paths=PackedStringArray("HEAD", "CAMERA", "HEADBOB_ANIMATION", "JUMP_ANIMATION", "CROUCH_ANIMATION", "COLLISION_MESH")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)
 script = ExtResource("1_0t4e8")
+weapons = [ExtResource("4_bx7cj"), ExtResource("3_q62an")]
 default_reticle = "res://addons/fpc/reticles/reticle_1.tscn"
 HEAD = NodePath("Head")
 CAMERA = NodePath("Head/Camera")
@@ -474,7 +476,12 @@ speed_scale = 4.0
 unique_name_in_owner = true
 target_position = Vector3(0, 0, -20)
 
+[node name="Deagel" type="Node3D" parent="Head"]
+unique_name_in_owner = true
+transform = Transform3D(-0.39983577, 0, 0.0114617525, 0, 0.4, 0, -0.0114617525, 0, -0.39983577, 0.50513154, -0.38743258, -0.700407)
+
 [node name="Weapon" type="Node3D" parent="Head"]
+unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.29472232, -0.8882927, -1.2882725e-08)
 
 [node name="Meshy_AI__0310164825_texture" parent="Head/Weapon" instance=ExtResource("4_bx7cj")]
