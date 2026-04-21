@@ -180,7 +180,8 @@ func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("main_gun"):
 		if actual_weapon_index == 2:
 			set_ak()
-
+		elif actual_weapon_index == 0:
+			set_ak()
 		elif actual_weapon_index == 1:
 			set_awp()
 
