@@ -177,16 +177,51 @@ func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("deagel"):
 		set_deagel()
 		
+	if event.is_action_pressed("main_gun"):
+		if actual_weapon_index == 2:
+			set_ak()
+
+		elif actual_weapon_index == 1:
+			set_awp()
+
+func set_awp():
+	if actual_weapon_index == 0:
+		return
+		
+	for node in %Deagel.get_children():
+		node.queue_free()
+	for node in %AK.get_children():
+		node.queue_free()
+		
+	actual_weapon_index = 0
+	var awp = weapons[actual_weapon_index].instantiate()
+	%Weapon.add_child(awp)
+
 func set_deagel():
 	if actual_weapon_index == 2:
 		return
 		
 	for node in %Weapon.get_children():
 		node.queue_free()
+	for node in %AK.get_children():
+		node.queue_free()
 		
 	actual_weapon_index = 2
 	var deagel = weapons[actual_weapon_index].instantiate()
 	%Deagel.add_child(deagel)
+	
+func set_ak():
+	if actual_weapon_index == 1:
+		return
+		
+	for node in %Weapon.get_children():
+		node.queue_free()
+	for node in %Deagel.get_children():
+		node.queue_free()
+		
+	actual_weapon_index = 1
+	var ak = weapons[actual_weapon_index].instantiate()
+	%AK.add_child(ak)
 	
 		
 func shoot():
