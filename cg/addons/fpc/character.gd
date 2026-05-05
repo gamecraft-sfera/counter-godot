@@ -7,6 +7,7 @@ extends CharacterBody3D
 
 @export var weapons: Array[PackedScene]
 var actual_weapon_index: int = 0
+var last_main_weapon: int = 0
 
 #region Character Export Group
 
@@ -179,15 +180,28 @@ func _input(event: InputEvent) -> void:
 		
 	if event.is_action_pressed("main_gun"):
 		if actual_weapon_index == 2:
-			set_ak()
+			if last_main_weapon == 0:
+				set_awp()
+			else:
+				set_ak()
 		elif actual_weapon_index == 0:
 			set_ak()
 		elif actual_weapon_index == 1:
 			set_awp()
+			
+	if event.is_action_pressed("main_gun_no_switch"):
+		if actual_weapon_index == 2:
+			if last_main_weapon == 0:
+				set_awp()
+			else:
+				set_ak()
 
 func set_awp():
 	if actual_weapon_index == 0:
 		return
+		
+	last_main_weapon = 1
+		
 		
 	for node in %Deagel.get_children():
 		node.queue_free()
@@ -202,6 +216,8 @@ func set_deagel():
 	if actual_weapon_index == 2:
 		return
 		
+	last_main_weapon = actual_weapon_index
+		
 	for node in %Weapon.get_children():
 		node.queue_free()
 	for node in %AK.get_children():
@@ -214,6 +230,8 @@ func set_deagel():
 func set_ak():
 	if actual_weapon_index == 1:
 		return
+		
+	last_main_weapon = 0
 		
 	for node in %Weapon.get_children():
 		node.queue_free()
