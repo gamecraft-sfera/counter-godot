@@ -243,7 +243,7 @@ func set_awp():
 	$Head/blockbench_export6.visible = false
 
 func set_ak():
-	can_shoot = true
+	can_shoot = false
 	
 	if actual_weapon_index == 1:
 		return
@@ -263,6 +263,9 @@ func set_ak():
 	$Head/blockbench_export4.visible = true
 	$Head/blockbench_export5.visible = false
 	$Head/blockbench_export6.visible = false
+	$Head/AKAnimation.play("gun")
+	await $Head/AKAnimation.animation_finished
+	can_shoot = true
 
 func set_deagel():
 	shooting = false
