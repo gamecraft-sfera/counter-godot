@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://cc1m2a1obsyn4"]
+[gd_scene format=3 uid="uid://cc1m2a1obsyn4"]
 
 [ext_resource type="Script" uid="uid://hutuis63hgev" path="res://addons/fpc/character.gd" id="1_0t4e8"]
 [ext_resource type="PackedScene" uid="uid://cpwn80suvej64" path="res://weapons/Meshy_AI__0310164930_texture.glb" id="3_q62an"]
@@ -6,6 +6,11 @@
 [ext_resource type="Script" uid="uid://u5u7xxlvmcxx" path="res://addons/fpc/debug.gd" id="3_x1wcc"]
 [ext_resource type="PackedScene" uid="uid://ceglub4oqa2jo" path="res://weapons/Meshy_AI__0310164825_texture.glb" id="4_bx7cj"]
 [ext_resource type="PackedScene" uid="uid://xqh8uv774q5d" path="res://weapons/Meshy_AI__0414155015_texture.glb" id="4_q34qd"]
+[ext_resource type="PackedScene" uid="uid://bx1a1qm22i53g" path="res://blockbench_export.tscn" id="5_4fv23"]
+[ext_resource type="Script" uid="uid://4rdknb0ffo5d" path="res://addons/fpc/ak.gd" id="5_q34qd"]
+[ext_resource type="Script" uid="uid://b6ir7fqrk3ldq" path="res://addons/fpc/weapon.gd" id="6_ex63h"]
+[ext_resource type="PackedScene" uid="uid://cud7jrcu1aeot" path="res://addons/fpc/deagel.tscn" id="6_go8lt"]
+[ext_resource type="Texture2D" uid="uid://b6mkbqps0jsoa" path="res://material/MuzzleFlash.png" id="6_mnhhx"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kp17n"]
 albedo_color = Color(0.909804, 0.596078, 0, 1)
@@ -383,7 +388,7 @@ MarginContainer/constants/margin_top = 10
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_k4wwl"]
 
-[node name="Character" type="CharacterBody3D" node_paths=PackedStringArray("HEAD", "CAMERA", "HEADBOB_ANIMATION", "JUMP_ANIMATION", "CROUCH_ANIMATION", "COLLISION_MESH")]
+[node name="Character" type="CharacterBody3D" unique_id=1690514432 node_paths=PackedStringArray("HEAD", "CAMERA", "HEADBOB_ANIMATION", "JUMP_ANIMATION", "CROUCH_ANIMATION", "COLLISION_MESH")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)
 script = ExtResource("1_0t4e8")
 weapons = Array[PackedScene]([ExtResource("4_bx7cj"), ExtResource("3_q62an"), ExtResource("4_q34qd")])
@@ -395,59 +400,101 @@ JUMP_ANIMATION = NodePath("Head/JumpAnimation")
 CROUCH_ANIMATION = NodePath("CrouchAnimation")
 COLLISION_MESH = NodePath("Collision")
 
-[node name="Mesh" type="MeshInstance3D" parent="."]
+[node name="Mesh" type="MeshInstance3D" parent="." unique_id=1542315861]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 mesh = SubResource("CapsuleMesh_jw1de")
 
-[node name="Collision" type="CollisionShape3D" parent="."]
+[node name="Collision" type="CollisionShape3D" parent="." unique_id=1199031120]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("CapsuleShape3D_uy03j")
 
-[node name="CrouchAnimation" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_5e5t5")
-}
+[node name="CrouchAnimation" type="AnimationPlayer" parent="." unique_id=722518083]
+libraries/ = SubResource("AnimationLibrary_5e5t5")
 
-[node name="Head" type="Node3D" parent="."]
+[node name="Head" type="Node3D" parent="." unique_id=384177724]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
 
-[node name="Camera" type="Camera3D" parent="Head"]
+[node name="Camera" type="Camera3D" parent="Head" unique_id=1207779857]
 
-[node name="HeadbobAnimation" type="AnimationPlayer" parent="Head"]
-libraries = {
-&"": SubResource("AnimationLibrary_o0unb")
-}
+[node name="HeadbobAnimation" type="AnimationPlayer" parent="Head" unique_id=116745281]
+libraries/ = SubResource("AnimationLibrary_o0unb")
 blend_times = [&"RESET", &"RESET", 0.5, &"RESET", &"walk", 0.5, &"walk", &"RESET", 0.5]
 
-[node name="JumpAnimation" type="AnimationPlayer" parent="Head"]
-libraries = {
-&"": SubResource("AnimationLibrary_qeg5r")
-}
+[node name="JumpAnimation" type="AnimationPlayer" parent="Head" unique_id=297889426]
+libraries/ = SubResource("AnimationLibrary_qeg5r")
 speed_scale = 4.0
 
-[node name="RayCast3D" type="RayCast3D" parent="Head"]
+[node name="RayCast3D" type="RayCast3D" parent="Head" unique_id=2029370025]
 unique_name_in_owner = true
 target_position = Vector3(0, 0, -20)
 
-[node name="AK" type="Node3D" parent="Head"]
+[node name="AK" type="Node3D" parent="Head" unique_id=1518908527]
 unique_name_in_owner = true
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0.536037, -0.4495951, -0.8855014)
+script = ExtResource("5_q34qd")
 
-[node name="Meshy_AI__0310164930_texture" parent="Head/AK" instance=ExtResource("3_q62an")]
+[node name="Meshy_AI__0310164930_texture" parent="Head/AK" unique_id=129549420 instance=ExtResource("3_q62an")]
 visible = false
 
-[node name="Deagel" type="Node3D" parent="Head"]
+[node name="Deagel" parent="Head" unique_id=1115877927 instance=ExtResource("6_go8lt")]
 unique_name_in_owner = true
-transform = Transform3D(-0.39983577, 0, 0.0114617525, 0, 0.4, 0, -0.0114617525, 0, -0.39983577, 0.50513154, -0.38743258, -0.700407)
+transform = Transform3D(-0.39983577, 0, 0.0114617525, 0, 0.4, 0, -0.0114617525, 0, -0.39983577, 0.47227377, -0.39634967, -1.1108108)
 
-[node name="Weapon" type="Node3D" parent="Head"]
+[node name="Meshy_AI__0414155015_texture2" parent="Head/Deagel" unique_id=71887708 instance=ExtResource("4_q34qd")]
+transform = Transform3D(0.9999999, 0, -1.8626451e-09, 0, 0.99999994, 0, 1.8626451e-09, 0, 0.9999999, 0, 0, 0)
+visible = false
+
+[node name="Weapon" type="Node3D" parent="Head" unique_id=1232146693]
 unique_name_in_owner = true
 transform = Transform3D(-0.99986196, 0, -0.016614778, 0, 1, 0, 0.016614778, 0, -0.99986196, 0.358143, -0.19928014, -0.8169267)
+script = ExtResource("6_ex63h")
 
-[node name="Meshy_AI__0310164825_texture2" parent="Head/Weapon" instance=ExtResource("4_bx7cj")]
+[node name="Meshy_AI__0310164825_texture2" parent="Head/Weapon" unique_id=1631365765 instance=ExtResource("4_bx7cj")]
 visible = false
 
-[node name="UserInterface" type="Control" parent="."]
+[node name="blockbench_export" parent="Head" unique_id=2007022314 instance=ExtResource("5_4fv23")]
+transform = Transform3D(-3.800656, 0, -1.896088, 0, 3, 0, 3.0997398, 0, -2.3248343, -0.19990928, -0.41887844, -0.43537313)
+visible = false
+
+[node name="blockbench_export2" parent="Head" unique_id=2100509944 instance=ExtResource("5_4fv23")]
+transform = Transform3D(-1.3560182e-07, 2.2234223e-08, -3.0000007, -0.5070289, 2.8727283, 4.5727234e-08, 2.8635209, 0.5086596, -1.2963609e-07, 0.46589828, -0.50886524, 0.03879879)
+visible = false
+
+[node name="blockbench_export4" parent="Head" unique_id=487492079 instance=ExtResource("5_4fv23")]
+transform = Transform3D(-1.3560182e-07, 2.2234223e-08, -3.0000007, -0.5070289, 2.8727283, 4.5727234e-08, 2.8635209, 0.5086596, -1.2963609e-07, 0.59479916, -0.6017033, -0.112359725)
+visible = false
+
+[node name="blockbench_export3" parent="Head" unique_id=79527858 instance=ExtResource("5_4fv23")]
+transform = Transform3D(-3.800656, 0, -1.896088, 0, 3, 0, 3.0997398, 0, -2.3248343, -0.19990928, -0.45663273, -0.43625122)
+visible = false
+
+[node name="blockbench_export5" parent="Head" unique_id=2050865990 instance=ExtResource("5_4fv23")]
+transform = Transform3D(-1.8619716e-07, 2.3703146e-08, -3.0000005, -0.69620997, 3.0625176, 4.572723e-08, 3.9319491, 0.54226464, -1.2963608e-07, 0.59479916, -0.68081915, -0.30787304)
+visible = false
+
+[node name="blockbench_export6" parent="Head" unique_id=165848159 instance=ExtResource("5_4fv23")]
+transform = Transform3D(-3.800656, 0, -1.896088, 0, 3, 0, 3.0997398, 0, -2.3248343, -0.19990928, -0.5455605, -0.31441927)
+visible = false
+
+[node name="MuzzleFlash" type="Sprite3D" parent="Head" unique_id=266139158]
+unique_name_in_owner = true
+transform = Transform3D(-0.15, 0, 1.3113416e-08, 0, 0.15, 0, -1.3113416e-08, 0, -0.15, 0.49244592, -0.2791922, -1.887007)
+visible = false
+texture = ExtResource("6_mnhhx")
+
+[node name="MuzzleFlashAWP" type="Sprite3D" parent="Head" unique_id=171182711]
+unique_name_in_owner = true
+transform = Transform3D(-0.15, 0, 1.3113416e-08, 0, 0.15, 0, -1.3113416e-08, 0, -0.15, 0.28457168, -0.15982533, -1.818788)
+visible = false
+texture = ExtResource("6_mnhhx")
+
+[node name="MuzzleFlashDeagle" type="Sprite3D" parent="Head" unique_id=952384105]
+unique_name_in_owner = true
+transform = Transform3D(-0.14999998, 0, 1.3001065e-08, 0, 0.14999998, 0, -1.3001065e-08, 0, -0.14999998, 0.43101296, -0.25367296, -1.5134703)
+visible = false
+texture = ExtResource("6_mnhhx")
+
+[node name="UserInterface" type="Control" parent="." unique_id=1122580239]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -456,7 +503,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
 
-[node name="DebugPanel" type="PanelContainer" parent="UserInterface"]
+[node name="DebugPanel" type="PanelContainer" parent="UserInterface" unique_id=1936751692]
 visible = false
 layout_mode = 0
 offset_left = 10.0
@@ -466,16 +513,16 @@ offset_bottom = 50.0
 theme = SubResource("Theme_wdf0f")
 script = ExtResource("3_x1wcc")
 
-[node name="MarginContainer" type="MarginContainer" parent="UserInterface/DebugPanel"]
+[node name="MarginContainer" type="MarginContainer" parent="UserInterface/DebugPanel" unique_id=373471411]
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="UserInterface/DebugPanel/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="UserInterface/DebugPanel/MarginContainer" unique_id=560493074]
 layout_mode = 2
 
-[node name="CrouchCeilingDetection" type="ShapeCast3D" parent="."]
+[node name="CrouchCeilingDetection" type="ShapeCast3D" parent="." unique_id=421859621]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("SphereShape3D_k4wwl")
 target_position = Vector3(0, 0.5, 0)
 
-[node name="EditorModule" type="Node" parent="."]
+[node name="EditorModule" type="Node" parent="." unique_id=1510596477]
 script = ExtResource("3_v3ckk")

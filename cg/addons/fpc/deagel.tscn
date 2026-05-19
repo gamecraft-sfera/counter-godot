@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://cud7jrcu1aeot"]
+
+[ext_resource type="Script" uid="uid://dubdmf4cteugd" path="res://addons/fpc/deagel.gd" id="1_g44ge"]
+[ext_resource type="PackedScene" uid="uid://xqh8uv774q5d" path="res://weapons/Meshy_AI__0414155015_texture.glb" id="2_uaosd"]
+
+[node name="Deagel" type="Node3D" unique_id=1115877927]
+transform = Transform3D(-0.39983577, 0, 0.0114617525, 0, 0.4, 0, -0.0114617525, 0, -0.39983577, 0, 0, 0)
+script = ExtResource("1_g44ge")
+
+[node name="Meshy_AI__0414155015_texture" parent="." unique_id=71887708 instance=ExtResource("2_uaosd")]
+visible = false

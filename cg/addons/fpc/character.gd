@@ -119,6 +119,12 @@ var last_main_weapon: int = 0
 ## If your game changes the gravity value during gameplay, check this property to allow the player to experience the change in gravity.
 @export var dynamic_gravity : bool = false
 
+var can_shoot := true
+@export var fire_rate := 1.2
+var shooting := false
+var weapon_changed := false
+
+
 #endregion
 
 #region Member Variable Initialization
@@ -139,6 +145,7 @@ var gravity : float = ProjectSettings.get_setting("physics/3d/default_gravity") 
 
 # Stores mouse input for rotating the camera in the physics process
 var mouseInput : Vector2 = Vector2(0,0)
+
 
 #endregion
 
@@ -163,6 +170,11 @@ func _ready():
 	
 	if OS.get_name() == "Web":
 		Input.set_use_accumulated_input(false)
+		
+	$Head/blockbench_export.visible = false
+	$Head/blockbench_export2.visible = false
+	$Head/blockbench_export3.visible = false
+	$Head/blockbench_export4.visible = false
 
 
 func _process(_delta):
@@ -173,8 +185,15 @@ func _process(_delta):
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("shoot"):
-		shoot()
-	
+		if actual_weapon_index == 1:  # калаш - авто
+			shooting = true
+			auto_shoot()
+		elif actual_weapon_index == 0 or actual_weapon_index == 2:  # авп и дигл
+			if can_shoot and not shooting:
+				shoot()
+	if event.is_action_released("shoot"):
+		shooting = false
+		
 	if event.is_action_pressed("deagel"):
 		set_deagel()
 		
@@ -197,58 +216,136 @@ func _input(event: InputEvent) -> void:
 				set_ak()
 
 func set_awp():
+	shooting = false
+	can_shoot = true
+	
 	if actual_weapon_index == 0:
 		return
 		
 	last_main_weapon = 1
-		
-		
+	
 	for node in %Deagel.get_children():
 		node.queue_free()
 	for node in %AK.get_children():
+		node.queue_free()
+	for node in %Weapon.get_children():
 		node.queue_free()
 		
 	actual_weapon_index = 0
 	var awp = weapons[actual_weapon_index].instantiate()
 	%Weapon.add_child(awp)
-
-func set_deagel():
-	if actual_weapon_index == 2:
-		return
-		
-	last_main_weapon = actual_weapon_index
-		
-	for node in %Weapon.get_children():
-		node.queue_free()
-	for node in %AK.get_children():
-		node.queue_free()
-		
-	actual_weapon_index = 2
-	var deagel = weapons[actual_weapon_index].instantiate()
-	%Deagel.add_child(deagel)
 	
+	$Head/blockbench_export.visible = true
+	$Head/blockbench_export2.visible = true
+	$Head/blockbench_export3.visible = false
+	$Head/blockbench_export4.visible = false
+	$Head/blockbench_export5.visible = false
+	$Head/blockbench_export6.visible = false
+
 func set_ak():
+	can_shoot = true
+	
 	if actual_weapon_index == 1:
 		return
-		
 	last_main_weapon = 0
-		
 	for node in %Weapon.get_children():
 		node.queue_free()
 	for node in %Deagel.get_children():
 		node.queue_free()
-		
+	for node in %AK.get_children():
+		node.queue_free()
 	actual_weapon_index = 1
 	var ak = weapons[actual_weapon_index].instantiate()
 	%AK.add_child(ak)
+	$Head/blockbench_export.visible = false
+	$Head/blockbench_export2.visible = false
+	$Head/blockbench_export3.visible = true
+	$Head/blockbench_export4.visible = true
+	$Head/blockbench_export5.visible = false
+	$Head/blockbench_export6.visible = false
+
+func set_deagel():
+	shooting = false
+	can_shoot = true
 	
-		
+	if actual_weapon_index == 2:
+		return
+	last_main_weapon = actual_weapon_index
+	for node in %Weapon.get_children():
+		node.queue_free()
+	for node in %AK.get_children():
+		node.queue_free()
+	for node in %Deagel.get_children():
+		node.queue_free()
+	actual_weapon_index = 2
+	var deagel = weapons[actual_weapon_index].instantiate()
+	%Deagel.add_child(deagel)
+	$Head/blockbench_export.visible = false
+	$Head/blockbench_export2.visible = false
+	$Head/blockbench_export3.visible = false
+	$Head/blockbench_export4.visible = false
+	$Head/blockbench_export5.visible = true
+	$Head/blockbench_export6.visible = true
+	
 func shoot():
+	if not can_shoot:
+		return
+	can_shoot = false
+	var weapon_at_shot = actual_weapon_index
 	if %RayCast3D.is_colliding():
-		var collider : Node3D = %RayCast3D.get_collider()
+		var collider = %RayCast3D.get_collider()
 		if collider:
 			collider.queue_free()
-	
+	match actual_weapon_index:
+		0:
+			%Weapon.apply_recoil()
+			$Head/MuzzleFlashAWP.visible = true
+			await get_tree().create_timer(0.05).timeout
+			$Head/MuzzleFlashAWP.visible = false
+			await get_tree().create_timer(1.15).timeout
+		2:
+			%Deagel.apply_recoil()
+			$Head/MuzzleFlashDeagle.visible = true
+			await get_tree().create_timer(0.05).timeout
+			$Head/MuzzleFlashDeagle.visible = false
+			await get_tree().create_timer(0.3).timeout
+	if actual_weapon_index == weapon_at_shot:
+		can_shoot = true
+
+func auto_shoot():
+	while shooting and actual_weapon_index == 1:
+		if can_shoot:
+			can_shoot = false
+			if %RayCast3D.is_colliding():
+				var collider = %RayCast3D.get_collider()
+				if collider:
+					collider.queue_free()
+			%AK.apply_recoil()
+			# мазл флеш
+			$Head/MuzzleFlash.visible = true
+			await get_tree().create_timer(0.05).timeout
+			$Head/MuzzleFlash.visible = false
+			await get_tree().create_timer(0.05).timeout
+			if weapon_changed:
+				weapon_changed = false
+				return
+			can_shoot = true
+		else:
+			await get_tree().process_frame
+
+func get_current_weapon():
+	match actual_weapon_index:
+		0:
+			if %Weapon.get_child_count() > 0:
+				return %Weapon.get_child(0)
+		1:
+			if %AK.get_child_count() > 0:
+				return %AK.get_child(0)
+		2:
+			if %Deagel.get_child_count() > 0:
+				return %Deagel.get_child(0)
+	return null
+
 func _physics_process(delta): # Most things happen here.
 	# Gravity
 	if dynamic_gravity:
