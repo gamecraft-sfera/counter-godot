@@ -217,7 +217,7 @@ func _input(event: InputEvent) -> void:
 
 func set_awp():
 	shooting = false
-	can_shoot = true
+	can_shoot = false
 	
 	if actual_weapon_index == 0:
 		return
@@ -234,6 +234,7 @@ func set_awp():
 	actual_weapon_index = 0
 	var awp = weapons[actual_weapon_index].instantiate()
 	%Weapon.add_child(awp)
+	awp.name = "Meshy_AI__0310164825_texture2"
 	
 	$Head/blockbench_export.visible = true
 	$Head/blockbench_export2.visible = true
@@ -241,6 +242,9 @@ func set_awp():
 	$Head/blockbench_export4.visible = false
 	$Head/blockbench_export5.visible = false
 	$Head/blockbench_export6.visible = false
+	$Head/AWPAnimation.play("awp_gun")
+	await $Head/AWPAnimation.animation_finished
+	can_shoot = true
 
 func set_ak():
 	can_shoot = false
