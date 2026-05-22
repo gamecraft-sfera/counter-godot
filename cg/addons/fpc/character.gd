@@ -216,7 +216,6 @@ func _input(event: InputEvent) -> void:
 				set_ak()
 
 func set_awp():
-	shooting = false
 	can_shoot = false
 	
 	if actual_weapon_index == 0:
@@ -261,6 +260,7 @@ func set_ak():
 	actual_weapon_index = 1
 	var ak = weapons[actual_weapon_index].instantiate()
 	%AK.add_child(ak)
+	
 	$Head/blockbench_export.visible = false
 	$Head/blockbench_export2.visible = false
 	$Head/blockbench_export3.visible = true
@@ -272,8 +272,7 @@ func set_ak():
 	can_shoot = true
 
 func set_deagel():
-	shooting = false
-	can_shoot = true
+	can_shoot = false
 	
 	if actual_weapon_index == 2:
 		return
@@ -287,13 +286,18 @@ func set_deagel():
 	actual_weapon_index = 2
 	var deagel = weapons[actual_weapon_index].instantiate()
 	%Deagel.add_child(deagel)
+	deagel.name = "Meshy_AI__0414155015_texture2"
+	
 	$Head/blockbench_export.visible = false
 	$Head/blockbench_export2.visible = false
 	$Head/blockbench_export3.visible = false
 	$Head/blockbench_export4.visible = false
 	$Head/blockbench_export5.visible = true
 	$Head/blockbench_export6.visible = true
-	
+	$Head/DEAGLEAnimation.play("deagle_gun")
+	await $Head/DEAGLEAnimation.animation_finished
+	can_shoot = true
+
 func shoot():
 	if not can_shoot:
 		return

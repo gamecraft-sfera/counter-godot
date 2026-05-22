@@ -694,6 +694,163 @@ _data = {
 &"awp_gun": SubResource("Animation_6yc32")
 }
 
+[sub_resource type="Animation" id="Animation_xtbqr"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("%Deagel/Meshy_AI__0414155015_texture2:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, -1.8626454e-09, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("%Deagel/Meshy_AI__0414155015_texture2:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("blockbench_export5:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.59479916, -0.68081915, -0.30787304)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("blockbench_export5:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-1.5634486e-08, -1.5707964, -0.17524844)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("blockbench_export6:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.19990928, -0.5455605, -0.31441927)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("blockbench_export6:rotation")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, -2.4574234, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_bxhyc"]
+resource_name = "deagle_gun"
+length = 0.9
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("%Deagel/Meshy_AI__0414155015_texture2:rotation")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(2.7750735, 0, 0), Vector3(0, -1.8626454e-09, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("%Deagel/Meshy_AI__0414155015_texture2:position")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(-0.011, -1.599, 0), Vector3(0, 0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("blockbench_export5:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.8),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.59479916, -0.68081915, -0.30787304)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("blockbench_export5:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(5.240096e-08, -1.5707964, 0.63282156), Vector3(-1.5634486e-08, -1.5707964, -0.17524844)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("blockbench_export6:position")
+tracks/4/interp = 2
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.9),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(-0.3628325, -0.5455605, -0.31441924), Vector3(-0.19990928, -0.5455605, -0.31441927)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("blockbench_export6:rotation")
+tracks/5/interp = 2
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.9),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0.21118484, -1.7907078, 0.55676), Vector3(0, -2.4574234, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_3p1au"]
+_data = {
+&"RESET": SubResource("Animation_xtbqr"),
+&"deagle_gun": SubResource("Animation_bxhyc")
+}
+
 [sub_resource type="Theme" id="Theme_wdf0f"]
 MarginContainer/constants/margin_bottom = 10
 MarginContainer/constants/margin_left = 10
@@ -744,6 +901,9 @@ libraries/ = SubResource("AnimationLibrary_6wwgf")
 [node name="AWPAnimation" type="AnimationPlayer" parent="Head" unique_id=1044225014]
 libraries/ = SubResource("AnimationLibrary_xtbqr")
 
+[node name="DEAGLEAnimation" type="AnimationPlayer" parent="Head" unique_id=1823470805]
+libraries/ = SubResource("AnimationLibrary_3p1au")
+
 [node name="RayCast3D" type="RayCast3D" parent="Head" unique_id=2029370025]
 unique_name_in_owner = true
 target_position = Vector3(0, 0, -20)
@@ -761,8 +921,7 @@ unique_name_in_owner = true
 transform = Transform3D(-0.39983577, 0, 0.0114617525, 0, 0.4, 0, -0.0114617525, 0, -0.39983577, 0.47227377, -0.39634967, -1.1108108)
 
 [node name="Meshy_AI__0414155015_texture2" parent="Head/Deagel" unique_id=71887708 instance=ExtResource("4_q34qd")]
-transform = Transform3D(0.9999999, 0, -1.8626451e-09, 0, 0.99999994, 0, 1.8626451e-09, 0, 0.9999999, 0, 0, 0)
-visible = false
+transform = Transform3D(0.9999974, 0, -1.8626413e-09, 0, 0.9999978, 0, 1.8626405e-09, 0, 0.9999978, 0, 0, 0)
 
 [node name="Weapon" type="Node3D" parent="Head" unique_id=1232146693]
 unique_name_in_owner = true
@@ -771,12 +930,15 @@ script = ExtResource("6_ex63h")
 
 [node name="Meshy_AI__0310164825_texture2" parent="Head/Weapon" unique_id=1631365765 instance=ExtResource("4_bx7cj")]
 transform = Transform3D(1.0000004, 0, 0, 0, 1.0000001, 0, 0, 0, 1.0000002, 0, 0, 0)
+visible = false
 
 [node name="blockbench_export" parent="Head" unique_id=2007022314 instance=ExtResource("5_4fv23")]
 transform = Transform3D(-3.8006558, 0, -1.8960887, 0, 2.9999998, 0, 3.09974, 0, -2.3248339, -0.19990928, -0.41887844, -0.43537313)
+visible = false
 
 [node name="blockbench_export2" parent="Head" unique_id=2100509944 instance=ExtResource("5_4fv23")]
-transform = Transform3D(-1.3309563e-07, 2.267944e-08, -3.0000012, -0.5070289, 2.8727293, 4.6903477e-08, 2.863521, 0.50865924, -1.3113421e-07, 0.46589828, -0.50886524, 0.03879879)
+transform = Transform3D(-1.3309563e-07, 2.2679442e-08, -3.0000012, -0.5070289, 2.8727295, 4.6903477e-08, 2.863521, 0.5086593, -1.3113421e-07, 0.46589828, -0.50886524, 0.03879879)
+visible = false
 
 [node name="blockbench_export3" parent="Head" unique_id=79527858 instance=ExtResource("5_4fv23")]
 transform = Transform3D(-3.8006558, 0, -1.8960887, 0, 3.0000002, 0, 3.09974, 0, -2.3248339, -0.19990928, -0.45663273, -0.43625122)
@@ -787,12 +949,10 @@ transform = Transform3D(-1.3309561e-07, 2.2679433e-08, -3.0000007, -0.5070288, 2
 visible = false
 
 [node name="blockbench_export5" parent="Head" unique_id=2050865990 instance=ExtResource("5_4fv23")]
-transform = Transform3D(-1.8619716e-07, 2.3703146e-08, -3.0000005, -0.69620997, 3.0625176, 4.572723e-08, 3.9319491, 0.54226464, -1.2963608e-07, 0.59479916, -0.68081915, -0.30787304)
-visible = false
+transform = Transform3D(-1.8275587e-07, 2.417777e-08, -3.0000005, -0.69621, 3.0625176, 4.6903466e-08, 3.9319499, 0.54226416, -1.3113419e-07, 0.59479916, -0.68081915, -0.30787304)
 
 [node name="blockbench_export6" parent="Head" unique_id=165848159 instance=ExtResource("5_4fv23")]
-transform = Transform3D(-3.800656, 0, -1.896088, 0, 3, 0, 3.0997398, 0, -2.3248343, -0.19990928, -0.5455605, -0.31441927)
-visible = false
+transform = Transform3D(-3.8006551, 0, -1.8960884, 0, 2.9999993, 0, 3.0997396, 0, -2.3248334, -0.19990928, -0.5455605, -0.31441927)
 
 [node name="MuzzleFlash" type="Sprite3D" parent="Head" unique_id=266139158]
 unique_name_in_owner = true
