@@ -1,0 +1,5 @@
+[gd_scene format=3 uid="uid://o2qv1h1h74ai"]
+
+[ext_resource type="PackedScene" uid="uid://c5areyrbjen7j" path="res://Meshy_AI_Character_in_Tactical_0224160337_texture.glb" id="1_u5rnf"]
+
+[node name="Meshy_AI_Character_in_Tactical_0224160337_texture" unique_id=410415837 instance=ExtResource("1_u5rnf")]

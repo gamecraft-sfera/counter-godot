@@ -906,7 +906,8 @@ libraries/ = SubResource("AnimationLibrary_3p1au")
 
 [node name="RayCast3D" type="RayCast3D" parent="Head" unique_id=2029370025]
 unique_name_in_owner = true
-target_position = Vector3(0, 0, -20)
+target_position = Vector3(0, 0, -50)
+collision_mask = 2
 
 [node name="AK" type="Node3D" parent="Head" unique_id=1518908527]
 unique_name_in_owner = true
@@ -937,7 +938,7 @@ transform = Transform3D(-3.8006558, 0, -1.8960887, 0, 2.9999998, 0, 3.09974, 0, 
 visible = false
 
 [node name="blockbench_export2" parent="Head" unique_id=2100509944 instance=ExtResource("5_4fv23")]
-transform = Transform3D(-1.3309563e-07, 2.2679442e-08, -3.0000012, -0.5070289, 2.8727295, 4.6903477e-08, 2.863521, 0.5086593, -1.3113421e-07, 0.46589828, -0.50886524, 0.03879879)
+transform = Transform3D(-1.3309563e-07, 2.2679444e-08, -3.0000012, -0.5070289, 2.8727298, 4.6903477e-08, 2.863521, 0.50865936, -1.3113421e-07, 0.46589828, -0.50886524, 0.03879879)
 visible = false
 
 [node name="blockbench_export3" parent="Head" unique_id=79527858 instance=ExtResource("5_4fv23")]
@@ -949,7 +950,7 @@ transform = Transform3D(-1.3309561e-07, 2.2679433e-08, -3.0000007, -0.5070288, 2
 visible = false
 
 [node name="blockbench_export5" parent="Head" unique_id=2050865990 instance=ExtResource("5_4fv23")]
-transform = Transform3D(-1.8275587e-07, 2.417777e-08, -3.0000005, -0.69621, 3.0625176, 4.6903466e-08, 3.9319499, 0.54226416, -1.3113419e-07, 0.59479916, -0.68081915, -0.30787304)
+transform = Transform3D(-1.8275587e-07, 2.417777e-08, -3.0000005, -0.6962101, 3.0625176, 4.6903466e-08, 3.93195, 0.54226416, -1.3113419e-07, 0.59479916, -0.68081915, -0.30787304)
 
 [node name="blockbench_export6" parent="Head" unique_id=165848159 instance=ExtResource("5_4fv23")]
 transform = Transform3D(-3.8006551, 0, -1.8960884, 0, 2.9999993, 0, 3.0997396, 0, -2.3248334, -0.19990928, -0.5455605, -0.31441927)

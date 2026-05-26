@@ -307,6 +307,7 @@ func shoot():
 		var collider = %RayCast3D.get_collider()
 		if collider:
 			collider.queue_free()
+			
 	match actual_weapon_index:
 		0:
 			%Weapon.apply_recoil()
