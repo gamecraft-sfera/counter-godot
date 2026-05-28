@@ -9,3 +9,10 @@ func _on_timer_timeout() -> void:
 	add_child(projectile)
 	
 	
+
+@onready var sound = $AudioStreamPlayer
+
+func _physics_process(delta):
+
+	if is_on_wall():
+		sound.play()
