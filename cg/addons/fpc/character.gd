@@ -156,6 +156,10 @@ var mouseInput : Vector2 = Vector2(0,0)
 func _ready():
 	#It is safe to comment this line if your game doesn't start with the mouse captured
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	
+	$Head/MuzzleFlash.visible = false
+	$Head/MuzzleFlashAWP.visible = false
+	$Head/MuzzleFlashDeagle.visible = false
 
 	# If the controller is rotated in a certain direction for game design purposes, redirect this rotation into the head.
 	HEAD.rotation.y = rotation.y
@@ -193,7 +197,7 @@ func _input(event: InputEvent) -> void:
 				shoot()
 	if event.is_action_released("shoot"):
 		shooting = false
-		
+		%Head.get_node("AKShootSound").stop()
 	if event.is_action_pressed("deagel"):
 		set_deagel()
 		
@@ -303,11 +307,18 @@ func shoot():
 		return
 	can_shoot = false
 	var weapon_at_shot = actual_weapon_index
+
 	if %RayCast3D.is_colliding():
 		var collider = %RayCast3D.get_collider()
-		if collider:
+		if collider.name == "t_head":
+			print("HEADSHOT!")
+			collider.get_node("T_HEADShootSound").play()
+			await get_tree().create_timer(0.5).timeout
+			collider.get_parent().queue_free()
+		# звук
+		else:
 			collider.queue_free()
-			
+
 	match actual_weapon_index:
 		0:
 			%Weapon.apply_recoil()
@@ -328,11 +339,20 @@ func auto_shoot():
 	while shooting and actual_weapon_index == 1:
 		if can_shoot:
 			can_shoot = false
+
 			if %RayCast3D.is_colliding():
 				var collider = %RayCast3D.get_collider()
-				if collider:
+				if collider.name == "t_head":
+					print("HEADSHOT!")
+					collider.get_node("T_HEADShootSound").play()
+					await get_tree().create_timer(0.5).timeout
+					collider.get_parent().queue_free()
+				# звук
+				else:
 					collider.queue_free()
+
 			%AK.apply_recoil()
+			%Head.get_node("AKShootSound").play()
 			# мазл флеш
 			$Head/MuzzleFlash.visible = true
 			await get_tree().create_timer(0.05).timeout

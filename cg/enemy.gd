@@ -10,7 +10,7 @@ func _on_timer_timeout() -> void:
 	
 	
 
-@onready var sound = $AudioStreamPlayer
+@onready var sound = $t_head/T_HEADShootSound
 
 func _physics_process(delta):
 
