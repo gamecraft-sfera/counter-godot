@@ -230,6 +230,7 @@ size = Vector3(11.797566, 3.8658447, 1.0554528)
 
 [node name="Enemy" parent="." unique_id=761125083 node_paths=PackedStringArray("player") instance=ExtResource("4_qjbww")]
 transform = Transform3D(-3.059797e-08, 0, 0.7, 0, 0.7, 0, -0.7, 0, -3.059797e-08, -30.541283, 2.4595852, -4.932232)
+collision_layer = 2
 player = NodePath("../Character")
 
 [node name="CSGBox3D28" type="CSGBox3D" parent="." unique_id=173681219]

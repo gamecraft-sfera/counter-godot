@@ -12,6 +12,8 @@
 [ext_resource type="Script" uid="uid://b6ir7fqrk3ldq" path="res://addons/fpc/weapon.gd" id="6_ex63h"]
 [ext_resource type="PackedScene" uid="uid://cud7jrcu1aeot" path="res://addons/fpc/deagel.tscn" id="6_go8lt"]
 [ext_resource type="Texture2D" uid="uid://b6mkbqps0jsoa" path="res://material/MuzzleFlash.png" id="6_mnhhx"]
+[ext_resource type="AudioStream" uid="uid://btjjyvpgixj1o" path="res://freesound_community-sniper-rifle-5989.mp3" id="11_6wwgf"]
+[ext_resource type="AudioStream" uid="uid://bhvo03ks73dkc" path="res://mrfriends-pistol-shot-233473.mp3" id="12_6yc32"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kp17n"]
 albedo_color = Color(0.909804, 0.596078, 0, 1)
@@ -909,6 +911,7 @@ libraries/ = SubResource("AnimationLibrary_3p1au")
 [node name="RayCast3D" type="RayCast3D" parent="Head" unique_id=2029370025]
 unique_name_in_owner = true
 target_position = Vector3(0, 0, -50)
+collision_mask = 2
 
 [node name="AK" type="Node3D" parent="Head" unique_id=1518908527]
 unique_name_in_owner = true
@@ -916,6 +919,7 @@ transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0.53
 script = ExtResource("5_q34qd")
 
 [node name="Meshy_AI__0310164930_texture" parent="Head/AK" unique_id=129549420 instance=ExtResource("3_q62an")]
+visible = false
 
 [node name="Deagel" parent="Head" unique_id=1115877927 instance=ExtResource("6_go8lt")]
 unique_name_in_owner = true
@@ -923,6 +927,7 @@ transform = Transform3D(-0.39983577, 0, 0.0114617525, 0, 0.4, 0, -0.0114617525, 
 
 [node name="Meshy_AI__0414155015_texture2" parent="Head/Deagel" unique_id=71887708 instance=ExtResource("4_q34qd")]
 transform = Transform3D(0.9999974, 0, -1.8626413e-09, 0, 0.9999978, 0, 1.8626405e-09, 0, 0.9999978, 0, 0, 0)
+visible = false
 
 [node name="Weapon" type="Node3D" parent="Head" unique_id=1232146693]
 unique_name_in_owner = true
@@ -931,7 +936,6 @@ script = ExtResource("6_ex63h")
 
 [node name="Meshy_AI__0310164825_texture2" parent="Head/Weapon" unique_id=1631365765 instance=ExtResource("4_bx7cj")]
 transform = Transform3D(1.0000004, 0, 0, 0, 1.0000001, 0, 0, 0, 1.0000002, 0, 0, 0)
-visible = false
 
 [node name="blockbench_export" parent="Head" unique_id=2007022314 instance=ExtResource("5_4fv23")]
 transform = Transform3D(-3.8006558, 0, -1.8960887, 0, 2.9999998, 0, 3.09974, 0, -2.3248339, -0.19990928, -0.41887844, -0.43537313)
@@ -950,7 +954,7 @@ transform = Transform3D(-1.3309561e-07, 2.2679433e-08, -3.0000007, -0.5070288, 2
 visible = false
 
 [node name="blockbench_export5" parent="Head" unique_id=2050865990 instance=ExtResource("5_4fv23")]
-transform = Transform3D(-1.827559e-07, 2.417777e-08, -3.0000005, -0.69621015, 3.0625176, 4.6903466e-08, 3.9319506, 0.54226416, -1.3113419e-07, 0.59479916, -0.68081915, -0.30787304)
+transform = Transform3D(-1.8275591e-07, 2.417777e-08, -3.0000005, -0.6962102, 3.0625176, 4.6903466e-08, 3.9319508, 0.54226416, -1.3113419e-07, 0.59479916, -0.68081915, -0.30787304)
 
 [node name="blockbench_export6" parent="Head" unique_id=165848159 instance=ExtResource("5_4fv23")]
 transform = Transform3D(-3.8006551, 0, -1.8960884, 0, 2.9999993, 0, 3.0997396, 0, -2.3248334, -0.19990928, -0.5455605, -0.31441927)
@@ -975,6 +979,12 @@ texture = ExtResource("6_mnhhx")
 
 [node name="AKShootSound" type="AudioStreamPlayer3D" parent="Head" unique_id=171794025]
 stream = ExtResource("6_6wwgf")
+
+[node name="AWPShootSound" type="AudioStreamPlayer3D" parent="Head" unique_id=1171609403]
+stream = ExtResource("11_6wwgf")
+
+[node name="DEAGLEShootSound" type="AudioStreamPlayer3D" parent="Head" unique_id=1066076977]
+stream = ExtResource("12_6yc32")
 
 [node name="UserInterface" type="Control" parent="." unique_id=1122580239]
 layout_mode = 3

@@ -310,24 +310,29 @@ func shoot():
 
 	if %RayCast3D.is_colliding():
 		var collider = %RayCast3D.get_collider()
+		var enemy = collider.get_parent().get_parent()
 		if collider.name == "t_head":
 			print("HEADSHOT!")
 			collider.get_node("T_HEADShootSound").play()
 			await get_tree().create_timer(0.5).timeout
-			collider.get_parent().queue_free()
-		# звук
-		else:
-			collider.queue_free()
+		var node = collider
+		while node:
+			if node is CharacterBody3D:
+				node.die()
+				break
+			node = node.get_parent()
 
 	match actual_weapon_index:
 		0:
 			%Weapon.apply_recoil()
+			%Head.get_node("AWPShootSound").play()
 			$Head/MuzzleFlashAWP.visible = true
 			await get_tree().create_timer(0.05).timeout
 			$Head/MuzzleFlashAWP.visible = false
 			await get_tree().create_timer(1.15).timeout
 		2:
 			%Deagel.apply_recoil()
+			%Head.get_node("DEAGLEShootSound").play()
 			$Head/MuzzleFlashDeagle.visible = true
 			await get_tree().create_timer(0.05).timeout
 			$Head/MuzzleFlashDeagle.visible = false
@@ -342,14 +347,17 @@ func auto_shoot():
 
 			if %RayCast3D.is_colliding():
 				var collider = %RayCast3D.get_collider()
+				var enemy = collider.get_parent().get_parent()
 				if collider.name == "t_head":
 					print("HEADSHOT!")
 					collider.get_node("T_HEADShootSound").play()
 					await get_tree().create_timer(0.5).timeout
-					collider.get_parent().queue_free()
-				# звук
-				else:
-					collider.queue_free()
+				var node = collider
+				while node:
+					if node is CharacterBody3D:
+						node.die()
+						break
+					node = node.get_parent()
 
 			%AK.apply_recoil()
 			%Head.get_node("AKShootSound").play()

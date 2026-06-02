@@ -16,3 +16,8 @@ func _physics_process(delta):
 
 	if is_on_wall():
 		sound.play()
+
+func die():
+	visible = false
+	await get_tree().create_timer(2.0).timeout
+	visible = true
