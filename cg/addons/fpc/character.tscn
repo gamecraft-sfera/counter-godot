@@ -912,6 +912,7 @@ libraries/ = SubResource("AnimationLibrary_3p1au")
 unique_name_in_owner = true
 target_position = Vector3(0, 0, -50)
 collision_mask = 2
+collide_with_areas = true
 
 [node name="AK" type="Node3D" parent="Head" unique_id=1518908527]
 unique_name_in_owner = true

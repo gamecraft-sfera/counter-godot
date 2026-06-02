@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://dbtidwy17m05p" path="res://enemy.gd" id="1_4gyqm"]
 [ext_resource type="PackedScene" uid="uid://o2qv1h1h74ai" path="res://enemy_model.tscn" id="2_4gyqm"]
 [ext_resource type="AudioStream" uid="uid://cd1ox1ajq3llh" path="res://u_68csiaifb5-bulletimpact3-442719.mp3" id="3_qi2p4"]
+[ext_resource type="AudioStream" uid="uid://ro317263m8y4" path="res://u_68csiaifb5-bulletimpact2-442718.mp3" id="4_iifgy"]
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_u5rnf"]
 points = PackedVector3Array(0.9638753, 0.5705407, 0.0037683584, 0.3910663, 0.51028633, -0.11682301, 0.3910663, 0.5705407, -0.11682301, 0.3910663, 0.51028633, 0.06408175, 0.3910663, 0.6006945, 0.033925056, 0.9336537, 0.6006945, -0.11682301, 0.48156297, 0.44996116, -0.056509618, 0.8733226, 0.51028633, 0.06408175, 0.9336537, 0.5404047, -0.11682301, 0.8130475, 0.6308305, 0.0037683584, 0.8733226, 0.5705407, 0.06408175, 0.3910663, 0.6006945, -0.086666316, 0.3910663, 0.44996116, 0.0037683584, 0.42123187, 0.4801326, -0.11682301, 0.78288203, 0.6308305, -0.056509618, 0.3910663, 0.5705407, 0.06408175, 0.9638753, 0.6006945, 0.0037683584, 0.6624441, 0.4801326, -0.086666316, 0.48156297, 0.44996116, 0.0037683584, 0.69244146, 0.4801326, -0.056509618, 0.541838, 0.4801326, -0.11682301, 0.7527725, 0.6006945, -0.11682301, 0.3910663, 0.44996116, -0.056509618, 0.9336537, 0.6006945, 0.033925056, 0.9638753, 0.6006945, -0.056509618, 0.8733226, 0.51028633, 0.0037683584, 0.9336537, 0.5404047, 0.033925056, 0.8130475, 0.6308305, -0.056509618)
@@ -59,11 +60,18 @@ shape = SubResource("ConvexPolygonShape3D_rjwns")
 transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0.07908803, -2.3337693, 0.9073757)
 shape = SubResource("ConvexPolygonShape3D_nrh4y")
 
-[node name="t_head" type="CollisionShape3D" parent="." unique_id=1448555532]
+[node name="AreaHead3D" type="Area3D" parent="." unique_id=1318801307]
+collision_layer = 2
+
+[node name="t_head" type="CollisionShape3D" parent="AreaHead3D" unique_id=1448555532]
 transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0.07908803, -2.3337693, 0.9073757)
 shape = SubResource("ConvexPolygonShape3D_5fgry")
 
-[node name="T_HEADShootSound" type="AudioStreamPlayer3D" parent="t_head" unique_id=421111008]
+[node name="T_HEADShootSound" type="AudioStreamPlayer3D" parent="AreaHead3D" unique_id=421111008]
+transform = Transform3D(1.4285715, 0, 0, 0, 1.4285715, 0, 0, 0, 1.4285715, 0.07908803, -2.3337693, 0.9073757)
 stream = ExtResource("3_qi2p4")
+
+[node name="T_BODYShootSound" type="AudioStreamPlayer3D" parent="." unique_id=110786520]
+stream = ExtResource("4_iifgy")
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

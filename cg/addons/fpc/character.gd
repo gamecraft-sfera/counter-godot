@@ -302,6 +302,10 @@ func set_deagel():
 	await $Head/DEAGLEAnimation.animation_finished
 	can_shoot = true
 
+func play_sound_delayed(sound):
+	await get_tree().create_timer(0.05).timeout
+	sound.play()
+
 func shoot():
 	if not can_shoot:
 		return
@@ -311,10 +315,12 @@ func shoot():
 	if %RayCast3D.is_colliding():
 		var collider = %RayCast3D.get_collider()
 		var enemy = collider.get_parent().get_parent()
-		if collider.name == "t_head":
+		if collider.name == "AreaHead3D":
 			print("HEADSHOT!")
-			collider.get_node("T_HEADShootSound").play()
-			await get_tree().create_timer(0.5).timeout
+			play_sound_delayed(collider.get_node("T_HEADShootSound"))
+		elif(collider.get_node("T_BODYShootSound")):
+			play_sound_delayed(collider.get_node("T_BODYShootSound"))
+		
 		var node = collider
 		while node:
 			if node is CharacterBody3D:
@@ -348,10 +354,9 @@ func auto_shoot():
 			if %RayCast3D.is_colliding():
 				var collider = %RayCast3D.get_collider()
 				var enemy = collider.get_parent().get_parent()
-				if collider.name == "t_head":
+				if collider.name == "AreaHead3D":
 					print("HEADSHOT!")
-					collider.get_node("T_HEADShootSound").play()
-					await get_tree().create_timer(0.5).timeout
+					play_sound_delayed(collider.get_node("T_HEADShootSound"))
 				var node = collider
 				while node:
 					if node is CharacterBody3D:
