@@ -303,7 +303,7 @@ func set_deagel():
 	can_shoot = true
 
 func play_sound_delayed(sound):
-	await get_tree().create_timer(0.05).timeout
+	await get_tree().create_timer(0.025).timeout
 	sound.play()
 
 func shoot():
@@ -357,6 +357,9 @@ func auto_shoot():
 				if collider.name == "AreaHead3D":
 					print("HEADSHOT!")
 					play_sound_delayed(collider.get_node("T_HEADShootSound"))
+				elif(collider.get_node("T_BODYShootSound")):
+					play_sound_delayed(collider.get_node("T_BODYShootSound"))
+
 				var node = collider
 				while node:
 					if node is CharacterBody3D:
